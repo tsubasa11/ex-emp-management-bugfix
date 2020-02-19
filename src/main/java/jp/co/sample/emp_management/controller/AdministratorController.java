@@ -78,7 +78,16 @@ public class AdministratorController {
 		// フォームからドメインにプロパティ値をコピー
 
 		BeanUtils.copyProperties(form, administrator);
+	
+		if(administratorService.checkAddress(administrator.getMailAddress())!=null) {
+			return toInsert();
+		}
+		
+		if(form.getPassword().equals(form.getConfirmpassword())) {
 		administratorService.insert(administrator);
+		}else {
+			return toInsert();
+		}
 		return "redirect:/";
 	}
 
