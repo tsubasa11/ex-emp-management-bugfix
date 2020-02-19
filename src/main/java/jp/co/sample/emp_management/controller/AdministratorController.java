@@ -80,7 +80,7 @@ public class AdministratorController {
 		
 		BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);
-		return "administrator/login";
+		return "redirect:/";
 	}
 
 	/////////////////////////////////////////////////////
