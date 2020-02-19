@@ -1,5 +1,7 @@
 package jp.co.sample.emp_management.repository;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
