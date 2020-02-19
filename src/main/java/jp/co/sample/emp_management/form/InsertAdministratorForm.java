@@ -18,7 +18,7 @@ public class InsertAdministratorForm {
 	@NotBlank(message = "メールアドレスを入力してください")
 	private String mailAddress;
 	/** パスワード */
-	@NotBlank(message = "パスワードを入力してください")
+	@NotBlank(message = "確認用パスワードを入力してください")
 	private String confirmpassword;
 
 	public String getConfirmpassword() {
@@ -30,7 +30,7 @@ public class InsertAdministratorForm {
 	}
 
 	/** 確認用パスワード */
-	@NotBlank(message = "確認用パスワードを入力してください")
+	@NotBlank(message = "パスワードを入力してください")
 	private String password;
 
 	public String getName() {
