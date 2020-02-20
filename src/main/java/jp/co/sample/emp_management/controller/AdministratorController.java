@@ -2,6 +2,8 @@ package jp.co.sample.emp_management.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ import jp.co.sample.emp_management.service.AdministratorService;
 @RequestMapping("/")
 public class AdministratorController {
 
+	private static final Logger LOGGER =  LoggerFactory.getLogger(AdministratorController.class);
+	
 	@Autowired
 	private AdministratorService administratorService;
 
@@ -134,6 +138,16 @@ public class AdministratorController {
 	public String logout() {
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/exception")
+	public String throwsException() {
+		// 0で除算、非検査例外であるArithmeticExceptionが発生！
+		System.out.println("例外発生前");
+		System.out.println(10 / 0); // ←このタイミングでGlobalExceptionHandlerに処理が飛ぶ
+		System.out.println("例外発生後");
+
+		return "";
 	}
 
 }

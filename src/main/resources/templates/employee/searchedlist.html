@@ -54,12 +54,12 @@
 		<ol class="breadcrumb">
 			<li class="active"><a href="list.html" th:href="@{/employee/showList}">従業員リスト</a></li>
 		</ol>
-		<div th:text="${searchMessage}"></div>
+
+		
 		<form th:action="@{/employee/showName}" method="post" th:object="${searchListForm}">
 		<input type="text" name="findName" id="findName"><br>
 		<button>名前検索</button>
 		</form>
-		
 		<!-- table -->
 		<div class="row">
 			<div

@@ -2,6 +2,8 @@ package jp.co.sample.emp_management.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ import jp.co.sample.emp_management.service.EmployeeService;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
+	
+	private static final Logger LOGGER =  LoggerFactory.getLogger(EmployeeController.class);
 
 	@Autowired
 	private EmployeeService employeeService;
@@ -94,4 +98,25 @@ public class EmployeeController {
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
 	}
+	
+	@RequestMapping("/showName")
+	public String showName(String findName, Model model) {
+		List<Employee> employeeList = employeeService.findByName(findName);
+		if(employeeList==null) {
+			model.addAttribute("searchMessage","一件もありませんでした");
+			return showList(model);
+		}
+		model.addAttribute("employeeList", employeeList);
+		return "employee/searchedlist";
+	}
+	
+	@RequestMapping("/exception")
+	public String throwsException() {
+		System.out.println("例外発生前");
+		System.out.println(10 / 0); 
+		System.out.println("例外発生後");
+
+		return "";
+	}
+	
 }
