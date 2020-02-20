@@ -74,7 +74,7 @@ public class AdministratorController {
 	 */
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form, BindingResult result,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,Model model) {
 		if (result.hasErrors()) {
 			return toInsert();
 		}
@@ -84,6 +84,7 @@ public class AdministratorController {
 		BeanUtils.copyProperties(form, administrator);
 	
 		if(administratorService.checkAddress(administrator.getMailAddress())!=null) {
+			model.addAttribute("dupeEmail","ご記入頂いたメールアドレスは既に登録済みです。");
 			return toInsert();
 		}
 		
